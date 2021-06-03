@@ -136,6 +136,12 @@ function createHttpBackend($browser, createXhr, $browserDefer, callbacks, rawDoc
         xhr.withCredentials = true;
       }
 
+      // To be sure that xhr manage the same timeout value as angular
+      // See https://developer.mozilla.org/fr/docs/Web/API/XMLHttpRequest/timeout example
+      if (timeout > 0) {
+        xhr.timeout = timeout;
+      }
+
       if (responseType) {
         try {
           xhr.responseType = responseType;
